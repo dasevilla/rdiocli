@@ -1,0 +1,5 @@
+*.pyc
+*.egg-info
+rdio.log
+rdio.log.*
+rdio-cliff.sublime-workspace
