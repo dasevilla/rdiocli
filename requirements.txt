@@ -1,3 +1,4 @@
 cliff
 requests
 -e git+https://github.com/idangazit/oauthlib.git#egg=oauthlib
+tox
