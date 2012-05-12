@@ -1,5 +1,4 @@
 import logging
-import os
 
 from cliff.lister import Lister
 
@@ -8,7 +7,6 @@ class SearchLister(Lister):
     """Search for objecs"""
 
     log = logging.getLogger(__name__)
-
 
     def get_parser(self, prog_name):
         parser = super(SearchLister, self).get_parser(prog_name)
@@ -26,7 +24,7 @@ class SearchLister(Lister):
 
         values = []
         for n in result['result']['results']:
-            n.update( (k,None) for k in titles - n.viewkeys() )
+            n.update((k, None) for k in titles - n.viewkeys())
             values.append(n.values())
 
         return (titles, values)

@@ -11,11 +11,6 @@ distribute_setup.use_setuptools()
 
 from setuptools import setup, find_packages
 
-from distutils.util import convert_path
-from fnmatch import fnmatchcase
-import os
-import sys
-
 try:
     long_description = open('README.rst', 'rt').read()
 except IOError:
@@ -45,7 +40,7 @@ setup(
 
     platforms=['Any'],
 
-    scripts=[],
+    scripts=['distribute_setup.py'],
 
     provides=[],
     install_requires=['distribute', 'cliff'],
