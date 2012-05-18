@@ -64,6 +64,8 @@ setup(
             'collection_artists = rdiocli.collection:ArtistsLister',
             ('collection_artist_albums ='
                 ' rdiocli.collection:AlbumsForArtistLister'),
+            ('catalog_artist_albums ='
+                ' rdiocli.catalog:AlbumsForArtistLister'),
             ],
         },
 
