@@ -62,6 +62,7 @@ setup(
             'playlist_collab = rdiocli.playlist:CollabPlaylistLister',
             'playlist_subscribed = rdiocli.playlist:SubscribedPlaylistLister',
             'collection_artists = rdiocli.collection:ArtistsLister',
+            'activity_rotation = rdiocli.activity:HeavyRotationLister',
             ('collection_artist_albums ='
                 ' rdiocli.collection:AlbumsForArtistLister'),
             ('catalog_artist_albums ='
