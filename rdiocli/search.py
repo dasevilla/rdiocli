@@ -15,7 +15,7 @@ class SearchLister(Lister):
         parser.add_argument('query', help='The search query', nargs=1)
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {'types': parsed_args.types[0], 'query': parsed_args.query[0]}
 

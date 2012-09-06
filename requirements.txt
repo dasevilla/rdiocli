@@ -1,4 +1,5 @@
 cliff
+cliff-tablib
 requests
 oauthlib
 tox

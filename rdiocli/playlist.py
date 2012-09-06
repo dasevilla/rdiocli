@@ -15,7 +15,7 @@ class PlaylistLister(Lister):
         parser.add_argument('--user', help='key for a user', required=False)
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {}
         if parsed_args.user is not None:

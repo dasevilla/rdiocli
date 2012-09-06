@@ -17,7 +17,7 @@ class HeavyRotationLister(Lister):
             choices=('artists', 'albums'))
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {}
         if parsed_args.user is not None:

@@ -43,7 +43,7 @@ setup(
     scripts=['distribute_setup.py'],
 
     provides=[],
-    install_requires=['distribute', 'cliff', 'oauthlib'],
+    install_requires=['distribute', 'cliff', 'cliff-tablib', 'oauthlib'],
 
     namespace_packages=[],
     packages=find_packages(),

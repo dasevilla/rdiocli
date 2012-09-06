@@ -20,7 +20,7 @@ class GetOneBase(ShowOne):
         parser.add_argument(self.ARGUMENT_NAME, help=self.ARGUMENT_HELP)
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
         if self.RDIO_API_METHOD is None:
             raise NotImplementedError('RDIO_API_METHOD is not defined')
 

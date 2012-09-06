@@ -15,7 +15,7 @@ class AlbumsForArtistLister(Lister):
         parser.add_argument('artist', help='key for an artist', nargs=1)
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {'artist': parsed_args.artist[0]}
 

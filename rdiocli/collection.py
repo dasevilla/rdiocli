@@ -16,7 +16,7 @@ class AlbumsForArtistLister(Lister):
         parser.add_argument('artist', help='key for an artist', nargs=1)
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {'artist': parsed_args.artist[0]}
         if parsed_args.user is not None:
@@ -30,7 +30,7 @@ class AlbumsForArtistLister(Lister):
 
 
 class ArtistsLister(Lister):
-    """Returns a user's playlists"""
+    """Returns a user's artists"""
 
     log = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ class ArtistsLister(Lister):
         parser.add_argument('--user', help='key for a user', nargs='?')
         return parser
 
-    def get_data(self, parsed_args):
+    def take_action(self, parsed_args):
 
         params = {}
         if parsed_args.user is not None:
