@@ -1,9 +1,9 @@
 import logging
 
-from cliff.lister import Lister
+from mixins import RdioLister
 
 
-class HeavyRotationLister(Lister):
+class HeavyRotationLister(RdioLister):
     """Returns a user's heavy rotation"""
 
     log = logging.getLogger(__name__)

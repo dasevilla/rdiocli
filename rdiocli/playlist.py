@@ -1,9 +1,9 @@
 import logging
 
-from cliff.lister import Lister
+from mixins import RdioLister
 
 
-class PlaylistLister(Lister):
+class PlaylistLister(RdioLister):
     """Returns a user's playlists"""
 
     log = logging.getLogger(__name__)
@@ -17,7 +17,8 @@ class PlaylistLister(Lister):
 
     def take_action(self, parsed_args):
 
-        params = {}
+        params = self.rdio_params(parsed_args)
+
         if parsed_args.user is not None:
             params['user'] = parsed_args.user
 

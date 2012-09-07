@@ -1,9 +1,9 @@
 import logging
 
-from cliff.show import ShowOne
+from mixins import RdioShowOne
 
 
-class GetOneBase(ShowOne):
+class GetOneBase(RdioShowOne):
     "Base class for fetch an object from Rdio"
 
     ARGUMENT_NAME = None
@@ -24,7 +24,8 @@ class GetOneBase(ShowOne):
         if self.RDIO_API_METHOD is None:
             raise NotImplementedError('RDIO_API_METHOD is not defined')
 
-        params = self.get_rdio_params(parsed_args)
+        params = params = self.rdio_params(parsed_args, self.get_rdio_params(parsed_args))
+
         result = self.app.call_rdio(self.RDIO_API_METHOD, params)
         payload = self.extract_data(parsed_args, result)
 

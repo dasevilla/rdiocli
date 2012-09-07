@@ -1,9 +1,9 @@
 import logging
 
-from cliff.lister import Lister
+from mixins import RdioLister
 
 
-class AlbumsForArtistLister(Lister):
+class AlbumsForArtistLister(RdioLister):
     """Returns a user's playlists"""
 
     log = logging.getLogger(__name__)
@@ -17,7 +17,9 @@ class AlbumsForArtistLister(Lister):
 
     def take_action(self, parsed_args):
 
-        params = {'artist': parsed_args.artist[0]}
+        params = self.rdio_params(parsed_args, {
+            'artist': parsed_args.artist[0]
+        })
 
         result = self.app.call_rdio('getAlbumsForArtist', params)
         titles = result['result'][0].keys()

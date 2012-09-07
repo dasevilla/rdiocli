@@ -1,9 +1,9 @@
 import logging
 
-from cliff.lister import Lister
+from mixins import RdioLister
 
 
-class SearchLister(Lister):
+class SearchLister(RdioLister):
     """Search for objecs"""
 
     log = logging.getLogger(__name__)
@@ -17,7 +17,10 @@ class SearchLister(Lister):
 
     def take_action(self, parsed_args):
 
-        params = {'types': parsed_args.types[0], 'query': parsed_args.query[0]}
+        params = self.rdio_params(parsed_args, {
+            'types': parsed_args.types[0],
+            'query': parsed_args.query[0]
+        })
 
         result = self.app.call_rdio('search', params)
         titles = result['result']['results'][0].keys()
