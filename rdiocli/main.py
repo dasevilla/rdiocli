@@ -1,12 +1,12 @@
 import logging
-import sys
 import os
-import json
+import sys
 
+import requests
 from cliff.app import App
 from cliff.commandmanager import CommandManager
 
-import rdio
+from bearer import BearerAuth
 
 
 class RdioApp(App):
@@ -21,19 +21,11 @@ class RdioApp(App):
             )
 
     def initialize_app(self, argv):
-        # Use the configuration that the rdio-python library uses
-        config_path = os.path.expanduser('~/.rdio-tool.json')
-        if os.path.exists(config_path):
-            config = json.load(file(config_path))
+        auth_code = os.environ.get('RDIO_ACCESS_TOKEN')
+        if auth_code is None:
+            self.rdio_session = requests.session()
         else:
-            raise RuntimeError('missing ~/.rdio-tool.json')
-
-        rdio_consumer = (str(config['consumer_key']),
-            str(config['consumer_secret']))
-        rdio_token = (str(config['auth_state']['access_token']['oauth_token']),
-            str(config['auth_state']['access_token']['oauth_token_secret']))
-
-        self.client = rdio.Rdio(rdio_consumer, rdio_token)
+            self.rdio_session = requests.session(auth=BearerAuth(auth_code))
 
     def prepare_to_run_command(self, cmd):
         self.log.debug('prepare_to_run_command %s', cmd.__class__.__name__)
@@ -44,11 +36,41 @@ class RdioApp(App):
             self.log.debug('got an error: %s', err)
 
     def call_rdio(self, method, params=dict()):
-        result = self.client.call(method, params)
+        api_url = 'https://www.rdio.com/api/1/'
+        params['method'] = method
+        result = self.rdio_session.post(api_url, data=params)
 
-        if result['status'] == 'error':
-            raise RuntimeError('Rdio API error: %s' % result['message'])
-        return result
+        if result.json['status'] == 'error':
+            raise RuntimeError('Rdio API error: %s' % result.json['message'])
+        return result.json
+
+    def api_call(self, parsed_args):
+        payload = {
+            'method': parsed_args.method
+        }
+
+        for param in parsed_args.param:
+            k, v = param.split('=')
+            payload[k] = v
+
+        if parsed_args.extras:
+            payload['extras'] = parsed_args.extras
+
+        print parsed_args.url, parsed_args.token, payload
+
+        if parsed_args.token is None:
+            result = self.rdio_session.post(parsed_args.url, data=payload)
+        else:
+            result = self.rdio_session.post(parsed_args.url, data=payload,
+                auth=BearerAuth(parsed_args.token))
+
+        if result.status_code != 200:
+            raise RuntimeError('Invalid HTTP response code: %s' %
+                result.status_code)
+
+        if result.json['status'] == 'error':
+            raise RuntimeError('Rdio API error: %s' % result.json['message'])
+        return result.json
 
 
 def main(argv=sys.argv[1:]):

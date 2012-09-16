@@ -54,6 +54,7 @@ setup(
             'rdio = rdiocli.main:main'
             ],
         'rdio.cli': [
+            'call = rdiocli.call:RdioCall',
             'get_key = rdiocli.core:GetOneByKey',
             'get_shortcode = rdiocli.core:GetOneByShortCode',
             'get_url = rdiocli.core:GetOneByUrl',
