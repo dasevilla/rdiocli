@@ -55,19 +55,6 @@ setup(
             ],
         'rdio.cli': [
             'call = rdiocli.call:RdioCall',
-            'get_key = rdiocli.core:GetOneByKey',
-            'get_shortcode = rdiocli.core:GetOneByShortCode',
-            'get_url = rdiocli.core:GetOneByUrl',
-            'search = rdiocli.search:SearchLister',
-            'playlist_owned = rdiocli.playlist:OwnedPlaylistLister',
-            'playlist_collab = rdiocli.playlist:CollabPlaylistLister',
-            'playlist_subscribed = rdiocli.playlist:SubscribedPlaylistLister',
-            'collection_artists = rdiocli.collection:ArtistsLister',
-            'activity_rotation = rdiocli.activity:HeavyRotationLister',
-            ('collection_artist_albums ='
-                ' rdiocli.collection:AlbumsForArtistLister'),
-            ('catalog_artist_albums ='
-                ' rdiocli.catalog:AlbumsForArtistLister'),
             ],
         },
 
