@@ -1,27 +1,37 @@
 ::
 
-    usage: rdio [--version] [-v] [-q] [-h] [--debug]
+    usage: rdio [--version] [-v] [--log-file LOG_FILE] [-q] [-h] [--debug]
 
     Command line access to the Rdio API
 
     optional arguments:
-        --version      show program's version number and exit
-        -v, --verbose  Increase verbosity of output. Can be repeated.
-        -q, --quiet    suppress output except warnings and errors
-        -h, --help     show this help message and exit
-        --debug        show tracebacks on errors
+      --version            show program's version number and exit
+      -v, --verbose        Increase verbosity of output. Can be repeated.
+      --log-file LOG_FILE  Specify a file to log output. Disabled by default.
+      -q, --quiet          suppress output except warnings and errors
+      -h, --help           show this help message and exit
+                   show tracebacks on errors
 
     Commands:
-        collection artist albums  Returns a user's playlists
-        collection artists  Returns a user's playlists
-        get key        Fetch an object from Rdio using it's key
-        get shortcode  Fetch an object from Rdio using it's short-code
-        get url        Fetch an object from Rdio using it's URL
-        help           print detailed help for another command
-        playlist collab  Fetch playlists the user is collaborating with
-        playlist owned  Fetch playlists the user owns
-        playlist subscribed  Fetch playlists the user is subscribed to
-        search         Search for objecs
+      call           Make an OAuth 2.0 API call
+      grant client   OAuth 2.0 Client Credentials grant
+      grant code     OAuth 2.0 Authorization Code grant
+      grant implicit  OAuth 2.0 Implicit grant
+      grant user     OAuth 2.0 Resource Owner Credential grant
+      help           print detailed help for another command
+
+
+OAuth 2.0
+=========
+
+Bellow are examples for OAuth 2.0 grant methods
+
+::
+
+    $ rdio grant code -k <client key> -s <client secret> -r <redirect uri>
+    $ rdio grant implicit -k <client key> -s <client secret> -r <redirect uri>
+    $ rdio grant user -k <client key> -s <client secret> -e test@example.com
+    $ rdio grant client -k <client key> -s <client secret>
 
 
 Developing
