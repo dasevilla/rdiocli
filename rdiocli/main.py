@@ -39,7 +39,8 @@ class RdioApp(App):
         if parsed_args.extras:
             payload['extras'] = parsed_args.extras
 
-        print parsed_args.url, parsed_args.token, payload
+        self.log.debug('%s %s %s' % (parsed_args.url, parsed_args.token,
+            payload))
 
         if parsed_args.token is None:
             result = self.rdio_session.post(parsed_args.url, data=payload)
