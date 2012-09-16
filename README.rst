@@ -21,10 +21,20 @@
       help           print detailed help for another command
 
 
+API Call
+========
+
+Bellow is an example of using the Rdio ``get`` API method:
+
+::
+
+    $ rdio call -t <client key> get 'keys=r139688'
+
+
 OAuth 2.0
 =========
 
-Bellow are examples for OAuth 2.0 grant methods
+Bellow are examples for the OAuth 2.0 grant methods:
 
 ::
 
