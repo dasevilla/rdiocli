@@ -55,6 +55,10 @@ setup(
             ],
         'rdio.cli': [
             'call = rdiocli.call:RdioCall',
+            'grant_code = rdiocli.auth:AuthCodeGrant',
+            'grant_implicit = rdiocli.auth:ImplicitGrant',
+            'grant_client = rdiocli.auth:ClientGrant',
+            'grant_user = rdiocli.auth:PasswordGrant',
             ],
         },
 
