@@ -21,14 +21,21 @@
       help           print detailed help for another command
 
 
-API Call
-========
+OAuth 1.0a
+==========
+
+Bellow are examples for the OAuth 1.0a 3-legged authentication method:
+
+::
+
+    $ rdio oauth1 auth -k <client key> -s <client secret>
 
 Bellow is an example of using the Rdio ``get`` API method:
 
 ::
 
-    $ rdio call -t <client key> get 'keys=r139688'
+    $ rdio oauth1 call -k <client key> -s <client secret> -e <access secret> \
+        -c <access secret> get 'keys=r139688'
 
 
 OAuth 2.0
@@ -38,19 +45,22 @@ Bellow are examples for the OAuth 2.0 grant methods:
 
 ::
 
-    $ rdio grant code -k <client key> -s <client secret> -r <redirect uri>
-    $ rdio grant implicit -k <client key> -s <client secret> -r <redirect uri>
-    $ rdio grant user -k <client key> -s <client secret> -e test@example.com
-    $ rdio grant client -k <client key> -s <client secret>
+    $ rdio oauth2 grant code -k <client key> -s <client secret>
+        -r <redirect uri>
 
+    $ rdio oauth2 grant implicit -k <client key> -s <client secret>
+        -r <redirect uri>
 
-OAuth 1.0a
-==========
+    $ rdio oauth2 grant user -k <client key> -s <client secret>
+        -e test@example.com
+
+    $ rdio oauth2 grant client -k <client key> -s <client secret>
+
+Bellow is an example of using the Rdio ``get`` API method:
 
 ::
 
-    $ rdio oauth1 auth -k <client key> -s <client secret>
-    $ rdio oauth1 call -k <client key> -s <client secret> -e <access secret> -c <access secret> currentUser
+    $ rdio oauth2 call -t <client key> get 'keys=r139688'
 
 
 Developing

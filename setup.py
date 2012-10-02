@@ -54,13 +54,13 @@ setup(
             'rdio = rdiocli.main:main'
             ],
         'rdio.cli': [
-            'call = rdiocli.call:RdioCall',
-            'grant_code = rdiocli.auth:AuthCodeGrant',
-            'grant_implicit = rdiocli.auth:ImplicitGrant',
-            'grant_client = rdiocli.auth:ClientGrant',
-            'grant_user = rdiocli.auth:PasswordGrant',
             'oauth1_auth = rdiocli.oauth1.auth:OAuth1AuthCommand',
             'oauth1_call = rdiocli.oauth1.call:OAuth1Call',
+            'oauth2_auth_code = rdiocli.oauth2.auth:AuthCodeGrant',
+            'oauth2_auth_implicit = rdiocli.oauth2.auth:ImplicitGrant',
+            'oauth2_auth_client = rdiocli.oauth2.auth:ClientGrant',
+            'oauth2_auth_user = rdiocli.oauth2.auth:PasswordGrant',
+            'oauth2_call = rdiocli.oauth2.call:RdioCall',
             ],
         },
 

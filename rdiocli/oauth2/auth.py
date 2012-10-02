@@ -5,8 +5,8 @@ import urllib
 import sys
 
 from cliff.command import Command
-import requests
 from requests.auth import HTTPBasicAuth
+import requests
 
 
 class AuthCommand(Command):
