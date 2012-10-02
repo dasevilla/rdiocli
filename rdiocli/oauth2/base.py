@@ -1,2 +1,2 @@
-def OAuth2Exception(Exception):
+class OAuth2Exception(Exception):
     pass
