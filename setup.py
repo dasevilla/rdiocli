@@ -59,6 +59,8 @@ setup(
             'grant_implicit = rdiocli.auth:ImplicitGrant',
             'grant_client = rdiocli.auth:ClientGrant',
             'grant_user = rdiocli.auth:PasswordGrant',
+            'oauth1_auth = rdiocli.oauth1.auth:OAuth1AuthCommand',
+            'oauth1_call = rdiocli.oauth1.call:OAuth1Call',
             ],
         },
 

@@ -44,6 +44,15 @@ Bellow are examples for the OAuth 2.0 grant methods:
     $ rdio grant client -k <client key> -s <client secret>
 
 
+OAuth 1.0a
+==========
+
+::
+
+    $ rdio oauth1 auth -k <client key> -s <client secret>
+    $ rdio oauth1 call -k <client key> -s <client secret> -e <access secret> -c <access secret> currentUser
+
+
 Developing
 ==========
 
