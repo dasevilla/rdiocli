@@ -3,7 +3,7 @@
 PROJECT = 'rdio'
 
 # Change docs/sphinx/conf.py too!
-VERSION = '0.1'
+VERSION = '0.2'
 
 # Bootstrap installation of Distribute
 import distribute_setup
@@ -43,7 +43,7 @@ setup(
     scripts=['distribute_setup.py'],
 
     provides=[],
-    install_requires=['distribute', 'cliff', 'cliff-tablib', 'oauthlib'],
+    install_requires=['distribute', 'cliff', 'cliff-tablib', 'requests-oauth'],
 
     namespace_packages=[],
     packages=find_packages(),
