@@ -1,24 +1,26 @@
 ::
 
-    usage: rdio [--version] [-v] [--log-file LOG_FILE] [-q] [-h] [--debug]
+  usage: rdio [--version] [-v] [--log-file LOG_FILE] [-q] [-h] [--debug]
 
-    Command line access to the Rdio API
+  Command line access to the Rdio API
 
-    optional arguments:
-      --version            show program's version number and exit
-      -v, --verbose        Increase verbosity of output. Can be repeated.
-      --log-file LOG_FILE  Specify a file to log output. Disabled by default.
-      -q, --quiet          suppress output except warnings and errors
-      -h, --help           show this help message and exit
-                   show tracebacks on errors
+  optional arguments:
+    --version            show program's version number and exit
+    -v, --verbose        Increase verbosity of output. Can be repeated.
+    --log-file LOG_FILE  Specify a file to log output. Disabled by default.
+    -q, --quiet          suppress output except warnings and errors
+    -h, --help           show this help message and exit
+    --debug              show tracebacks on errors
 
-    Commands:
-      call           Make an OAuth 2.0 API call
-      grant client   OAuth 2.0 Client Credentials grant
-      grant code     OAuth 2.0 Authorization Code grant
-      grant implicit  OAuth 2.0 Implicit grant
-      grant user     OAuth 2.0 Resource Owner Credential grant
-      help           print detailed help for another command
+  Commands:
+    help           print detailed help for another command
+    oauth1 auth    Request OAuth 1.0a access credentials
+    oauth1 call    Make an OAuth 1.0a API call
+    oauth2 auth client  OAuth 2.0 Client Credentials grant
+    oauth2 auth code  OAuth 2.0 Authorization Code grant
+    oauth2 auth implicit  OAuth 2.0 Implicit grant
+    oauth2 auth user  OAuth 2.0 Resource Owner Credential grant
+    oauth2 call    Make an OAuth 2.0 API call
 
 
 OAuth 1.0a
