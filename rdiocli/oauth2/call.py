@@ -19,7 +19,7 @@ class RdioCall(Command):
         parser.add_argument('-u', '--url', help='Rdio API endpoint',
             required=False, default=self.API_URL)
         parser.add_argument('-t', '--token', help='access token',
-            required=False, default=os.getenv('RDIO_ACCESS_TOKEN'))
+            required=False, default=os.getenv('RDIO_OAUTH2_ACCESS_TOKEN'))
         parser.add_argument('-e', '--extras', help='extras arguments',
             required=False)
         parser.add_argument('method', help='API method to call')

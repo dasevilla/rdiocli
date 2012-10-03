@@ -37,6 +37,16 @@ Bellow is an example of using the Rdio ``get`` API method:
     $ rdio oauth1 call -k <client key> -s <client secret> -e <access secret> \
         -c <access secret> get 'keys=r139688'
 
+To skip entering API keys, you can define the following environment variables:
+
+::
+
+  RDIO_OAUTH1_CLIENT_KEY
+  RDIO_OAUTH1_CLIENT_SECRET
+  RDIO_OAUTH1_ACCESS_TOKEN
+  RDIO_OAUTH1_ACCESS_SECRET
+
+
 
 OAuth 2.0
 =========
@@ -61,6 +71,14 @@ Bellow is an example of using the Rdio ``get`` API method:
 ::
 
     $ rdio oauth2 call -t <client key> get 'keys=r139688'
+
+To skip entering API keys, you can define the following environment variables:
+
+::
+
+  RDIO_OAUTH2_CLIENT_KEY
+  RDIO_OAUTH2_CLIENT_SECRET
+  RDIO_OAUTH2_ACCESS_TOKEN
 
 
 Developing

@@ -21,9 +21,9 @@ class OAuth1Call(OAuth1Command):
         parser = super(OAuth1Call, self).get_parser(prog_name)
 
         parser.add_argument('-e', '--access-token', help='OAuth 1.0a token',
-            required=False, default=os.getenv('RDIO_ACCESS_TOKEN_OAUTH1'))
+            required=False, default=os.getenv('RDIO_OAUTH1_ACCESS_TOKEN'))
         parser.add_argument('-c', '--access-secret', help='OAuth 1.0a secret',
-            required=False, default=os.getenv('RDIO_ACCESS_SECRET_OAUTH1'))
+            required=False, default=os.getenv('RDIO_OAUTH1_ACCESS_SECRET'))
         parser.add_argument('-a', '--api-url',
             help='Rdio OAuth 1.0a authorization endpoint',
             required=False, default=self.API_URL)

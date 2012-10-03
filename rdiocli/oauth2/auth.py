@@ -23,9 +23,9 @@ class AuthCommand(Command):
             help='Rdio OAuth 2.0 authorization endpoint',
             required=False, default=self.AUTHORIZE_URL)
         parser.add_argument('-k', '--key', help='OAuth 2.0 key',
-            required=False, default=os.getenv('RDIO_CLIENT_KEY'))
+            required=False, default=os.getenv('RDIO_OAUTH2_CLIENT_KEY'))
         parser.add_argument('-s', '--secret', help='OAuth 2.0 secret',
-            required=False, default=os.getenv('RDIO_CLIENT_SECRET'))
+            required=False, default=os.getenv('RDIO_OAUTH2_CLIENT_SECRET'))
         parser.add_argument('-c', '--scope', help='OAuth 2.0 scope',
             required=False,)
 
