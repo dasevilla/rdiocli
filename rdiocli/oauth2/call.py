@@ -20,11 +20,18 @@ class RdioCall(Command):
             required=False, default=self.API_URL)
         parser.add_argument('-t', '--token', help='access token',
             required=False, default=os.getenv('RDIO_OAUTH2_ACCESS_TOKEN'))
+        parser.add_argument('-g', '--user-agent', help='User-Agent string',
+            required=False)
         parser.add_argument('method', help='API method to call')
         parser.add_argument('param', help='API method parameter', nargs='*')
         return parser
 
     def take_action(self, parsed_args):
+        headers = {}
+
+        if parsed_args.user_agent:
+            headers['User-Agent'] = parsed_args.user_agent
+
         payload = {
             'method': parsed_args.method
         }
@@ -34,7 +41,7 @@ class RdioCall(Command):
             payload[k] = v
 
         r = requests.post(parsed_args.url, auth=BearerAuth(parsed_args.token),
-            data=payload)
+            data=payload, headers=headers)
 
         if r.status_code != 200:
             raise OAuth2Exception('Invalid HTTP response code: %s' %
