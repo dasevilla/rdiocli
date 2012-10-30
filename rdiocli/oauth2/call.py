@@ -20,8 +20,6 @@ class RdioCall(Command):
             required=False, default=self.API_URL)
         parser.add_argument('-t', '--token', help='access token',
             required=False, default=os.getenv('RDIO_OAUTH2_ACCESS_TOKEN'))
-        parser.add_argument('-e', '--extras', help='extras arguments',
-            required=False)
         parser.add_argument('method', help='API method to call')
         parser.add_argument('param', help='API method parameter', nargs='*')
         return parser
@@ -34,9 +32,6 @@ class RdioCall(Command):
         for param in parsed_args.param:
             k, v = param.split('=')
             payload[k] = v
-
-        if parsed_args.extras:
-            payload['extras'] = parsed_args.extras
 
         r = requests.post(parsed_args.url, auth=BearerAuth(parsed_args.token),
             data=payload)
