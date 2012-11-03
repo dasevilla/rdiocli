@@ -51,7 +51,7 @@ class OAuth1Call(OAuth1Command):
             payload[k] = v
 
         hooks = {'pre_request': oauth_hook}
-        r = requests.post(self.API_URL, hooks=hooks, data=payload)
+        r = requests.post(parsed_args.api_url, hooks=hooks, data=payload)
 
         if r.status_code != 200:
             raise OAuthException('Bad response %s' % r.text)
