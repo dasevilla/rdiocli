@@ -60,6 +60,7 @@ setup(
             'oauth2_auth_implicit = rdiocli.oauth2.auth:ImplicitGrant',
             'oauth2_auth_client = rdiocli.oauth2.auth:ClientGrant',
             'oauth2_auth_user = rdiocli.oauth2.auth:PasswordGrant',
+            'oauth2_auth_refresh = rdiocli.oauth2.auth:RefreshGrant',
             'oauth2_call = rdiocli.oauth2.call:RdioCall',
             ],
         },

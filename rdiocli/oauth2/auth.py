@@ -172,3 +172,29 @@ class ClientGrant(AuthCommand):
             payload['scope'] = parsed_args.scope
 
         self.token_request(parsed_args, payload)
+
+
+class RefreshGrant(AuthCommand):
+
+    def get_description(self):
+        return "OAuth 2.0 Refresh grant"
+
+    def get_parser(self, prog_name):
+        parser = super(RefreshGrant, self).get_parser(prog_name)
+
+        parser.add_argument('refresh_token',
+            help='State to be returned back after authorization',
+            nargs='?', default=os.getenv('RDIO_OAUTH2_REFRESH_TOKEN'))
+
+        return parser
+
+    def take_action(self, parsed_args):
+        payload = {
+            'grant_type': 'refresh_token',
+            'refresh_token': parsed_args.refresh_token
+        }
+
+        if parsed_args.scope is not None:
+            payload['scope'] = parsed_args.scope
+
+        self.token_request(parsed_args, payload)
