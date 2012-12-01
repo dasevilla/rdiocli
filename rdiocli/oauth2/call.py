@@ -49,4 +49,16 @@ class RdioCall(Command):
 
         if r.json['status'] == 'error':
             raise OAuth2Exception('Rdio API error: %s' % r.json['message'])
+
+        self.log_request(r)
+
         print json.dumps(r.json, sort_keys=True, indent=2)
+
+    def log_request(self, r):
+        self.app.log.debug('HTTP/1.1 %s %s', r.status_code, r.reason)
+        self.log_headers(r.headers)
+        self.app.log.debug('')  # Used to create a blank line
+
+    def log_headers(self, header_dict):
+        for k, v in sorted(header_dict.iteritems()):
+            self.app.log.debug('%s: %s', k.title(), v)
