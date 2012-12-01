@@ -2,4 +2,5 @@
 *.egg-info
 rdio.log
 rdio.log.*
-rdio-cliff.sublime-workspace
+rdiocli.sublime-workspace
+.tox
