@@ -16,6 +16,12 @@ class RdioApp(App):
             command_manager=CommandManager('rdio.cli'),
             )
 
+    def configure_logging(self):
+        super(RdioApp, self).configure_logging()
+
+        # Prevent 'Starting new HTTPS connection' log messages
+        logging.getLogger('requests').setLevel(logging.WARNING)
+
 
 def main(argv=sys.argv[1:]):
     myapp = RdioApp()
