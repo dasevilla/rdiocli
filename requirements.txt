@@ -1,5 +1,5 @@
-cliff
-cliff-tablib
-requests
-requests-oauth
-tox
+cliff==1.2.1
+cliff-tablib==1.0
+requests==0.14.1
+requests-oauth==0.4.1
+tox==1.4.2
