@@ -1,6 +1,7 @@
+from __future__ import unicode_literals
 import urlparse
 
-from oauth_hook import OAuthHook
+from requests_oauthlib import OAuth1
 import requests
 
 from base import OAuth1Command, OAuthException
@@ -34,22 +35,17 @@ class OAuth1AuthCommand(OAuth1Command):
         return parser
 
     def get_temporary_credentials(self, client_token, client_secret):
-        oauth_hook = OAuthHook(
-            header_auth=True,
-            consumer_key=client_token,
-            consumer_secret=client_secret,
-        )
+        oauth = OAuth1(client_token, client_secret=client_secret)
 
-        hooks = {'pre_request': oauth_hook}
         payload = {
             'test': 1  # Hack so requests-oauth will send content-length
         }
-        r = requests.post(self.REQUEST_TOKEN_URL, hooks=hooks, data=payload)
+        r = requests.post(self.REQUEST_TOKEN_URL, auth=oauth, data=payload)
 
         if r.status_code != 200:
-            raise OAuthException('Bad response %s' % r.text)
+            raise OAuthException('Bad response %s' % r.content)
 
-        qs = urlparse.parse_qs(r.text)
+        qs = urlparse.parse_qs(r.content)
         temporary_token = qs['oauth_token'][0]
         temporary_secret = qs['oauth_token_secret'][0]
 
@@ -58,25 +54,22 @@ class OAuth1AuthCommand(OAuth1Command):
     def get_access_credentials(self, client_token, client_secret,
         temporary_token, temporary_secret, oauth_verifier):
 
-        oauth_hook = OAuthHook(
-            header_auth=True,
-            consumer_key=client_token,
-            consumer_secret=client_secret,
-            access_token=temporary_token,
-            access_token_secret=temporary_secret,
-        )
+        oauth = OAuth1(client_token,
+                       client_secret=client_secret,
+                       resource_owner_key=temporary_token,
+                       resource_owner_secret=temporary_secret)
 
-        hooks = {'pre_request': oauth_hook}
+
         payload = {
             'test': 1,  # Hack so requests-oauth will send content-length
             'oauth_verifier': oauth_verifier
         }
-        r = requests.post(self.ACCESS_TOKEN_URL, hooks=hooks, data=payload)
+        r = requests.post(self.ACCESS_TOKEN_URL, auth=oauth, data=payload)
 
         if r.status_code != 200:
-            raise OAuthException('Bad response %s' % r.text)
+            raise OAuthException('Bad response %s' % r.content)
 
-        qs = urlparse.parse_qs(r.text)
+        qs = urlparse.parse_qs(r.content)
         access_token = qs['oauth_token'][0]
         access_token_secret = qs['oauth_token_secret'][0]
 

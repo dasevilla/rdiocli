@@ -1,10 +1,10 @@
+from __future__ import unicode_literals
 import json
 import os
 
 from base import OAuth1Command, OAuthException
+from requests_oauthlib import OAuth1
 import requests
-
-from oauth_hook import OAuthHook
 
 
 class OAuth1Call(OAuth1Command):
@@ -33,14 +33,10 @@ class OAuth1Call(OAuth1Command):
         return parser
 
     def take_action(self, parsed_args):
-
-        oauth_hook = OAuthHook(
-            header_auth=True,
-            consumer_key=parsed_args.client_token,
-            consumer_secret=parsed_args.client_secret,
-            access_token=parsed_args.access_token,
-            access_token_secret=parsed_args.access_secret,
-        )
+        oauth = OAuth1(parsed_args.client_token,
+                       client_secret=parsed_args.client_secret,
+                       resource_owner_key=parsed_args.access_token,
+                       resource_owner_secret=parsed_args.access_secret)
 
         payload = {
             'method': parsed_args.method
@@ -50,8 +46,7 @@ class OAuth1Call(OAuth1Command):
             k, v = param.split('=')
             payload[k] = v
 
-        hooks = {'pre_request': oauth_hook}
-        r = requests.post(parsed_args.api_url, hooks=hooks, data=payload)
+        r = requests.post(parsed_args.api_url, auth=oauth, data=payload)
 
         if r.status_code != 200:
             raise OAuthException('Bad response %s' % r.text)
