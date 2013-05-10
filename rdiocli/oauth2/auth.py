@@ -36,7 +36,7 @@ class AuthCommand(Command):
             auth=HTTPBasicAuth(parsed_args.key, parsed_args.secret),
             data=payload)
 
-        print json.dumps(r.json, sort_keys=True, indent=2)
+        print json.dumps(r.json(), sort_keys=True, indent=2)
 
 
 class AuthCodeGrant(AuthCommand):
