@@ -2,10 +2,10 @@ import json
 import os
 
 from cliff.command import Command
+from requests_oauthlib import OAuth2
 import requests
 
 from base import OAuth2Exception
-from bearer import BearerAuth
 
 
 class RdioCall(Command):
@@ -27,6 +27,12 @@ class RdioCall(Command):
         return parser
 
     def take_action(self, parsed_args):
+        oauth_token = {
+            'token_type': 'Bearer',
+            'access_token': parsed_args.token,
+        }
+        oauth = OAuth2(token=oauth_token)
+
         headers = {}
 
         if parsed_args.user_agent:
@@ -40,19 +46,19 @@ class RdioCall(Command):
             k, v = param.split('=')
             payload[k] = v
 
-        r = requests.post(parsed_args.url, auth=BearerAuth(parsed_args.token),
+        r = requests.post(parsed_args.url, auth=oauth,
             data=payload, headers=headers)
 
         if r.status_code != 200:
             raise OAuth2Exception('Invalid HTTP response code: %s' %
                 r.status_code)
 
-        if r.json['status'] == 'error':
-            raise OAuth2Exception('Rdio API error: %s' % r.json['message'])
+        if r.json()['status'] == 'error':
+            raise OAuth2Exception('Rdio API error: %s' % r.json()['message'])
 
         self.log_request(r)
 
-        print json.dumps(r.json, sort_keys=True, indent=2)
+        print json.dumps(r.json(), sort_keys=True, indent=2)
 
     def log_request(self, r):
         self.app.log.debug('HTTP/1.1 %s %s', r.status_code, r.reason)
