@@ -47,6 +47,7 @@ setup(
         'distribute',
         'cliff',
         'cliff-tablib',
+        'requests',
         'requests-oauthlib'
     ],
 
