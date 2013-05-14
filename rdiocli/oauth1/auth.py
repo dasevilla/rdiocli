@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 import urlparse
 
 from requests_oauthlib import OAuth1
