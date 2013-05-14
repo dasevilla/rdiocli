@@ -50,7 +50,7 @@ class OAuth1Call(OAuth1Command):
         if r.status_code != 200:
             raise OAuthException('Bad response %s' % r.text)
 
-        if r.json['status'] == 'error':
-            raise OAuthException('Rdio API error: %s' % r.json['message'])
+        if r.json()['status'] == 'error':
+            raise OAuthException('Rdio API error: %s' % r.json()['message'])
 
-        print json.dumps(r.json, sort_keys=True, indent=2)
+        print json.dumps(r.json(), sort_keys=True, indent=2)
