@@ -49,6 +49,7 @@ class AuthCodeGrant(AuthCommand):
 
         parser.add_argument('-r', '--redirect-uri',
             help='URI to redirect back to after authorization',
+            default=os.getenv('RDIO_OAUTH2_REDIRECT_URI'),
             required=False)
         parser.add_argument('-e', '--state',
             help='State to be returned back after authorization',
