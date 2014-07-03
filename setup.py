@@ -5,10 +5,6 @@ PROJECT = 'rdio'
 # Change docs/sphinx/conf.py too!
 VERSION = '0.2'
 
-# Bootstrap installation of Distribute
-import distribute_setup
-distribute_setup.use_setuptools()
-
 from setuptools import setup, find_packages
 
 try:
