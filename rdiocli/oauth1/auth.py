@@ -42,6 +42,9 @@ class OAuth1AuthCommand(OAuth1Command):
         r = requests.post(self.REQUEST_TOKEN_URL, auth=oauth, data=payload)
 
         if r.status_code != 200:
+            print r.request.url
+            print r.status_code
+            print r.headers
             raise OAuthException('Bad response %s' % r.content)
 
         qs = urlparse.parse_qs(r.content)
@@ -66,6 +69,9 @@ class OAuth1AuthCommand(OAuth1Command):
         r = requests.post(self.ACCESS_TOKEN_URL, auth=oauth, data=payload)
 
         if r.status_code != 200:
+            print r.request.url
+            print r.status_code
+            print r.headers
             raise OAuthException('Bad response %s' % r.content)
 
         qs = urlparse.parse_qs(r.content)
