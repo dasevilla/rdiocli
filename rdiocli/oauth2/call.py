@@ -7,6 +7,7 @@ import requests
 
 from base import OAuth2Exception
 
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = "1"
 
 class RdioCall(Command):
     API_URL = 'https://www.rdio.com/api/1/'
