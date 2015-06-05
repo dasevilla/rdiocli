@@ -10,7 +10,7 @@ import requests
 
 
 class AuthCommand(Command):
-    TOKEN_URL = 'https://www.rdio.com/oauth2/token/'
+    TOKEN_URL = 'https://services.rdio.com/oauth2/token/'
     AUTHORIZE_URL = 'https://www.rdio.com/oauth2/authorize/'
 
     def get_parser(self, prog_name):

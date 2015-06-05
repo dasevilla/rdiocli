@@ -10,7 +10,7 @@ from base import OAuth2Exception
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = "1"
 
 class RdioCall(Command):
-    API_URL = 'https://www.rdio.com/api/1/'
+    API_URL = 'https://services.rdio.com/api/1/'
 
     def get_description(self):
         return "Make an OAuth 2.0 API call"
