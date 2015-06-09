@@ -36,11 +36,10 @@ setup(
 
     platforms=['Any'],
 
-    scripts=['distribute_setup.py'],
+    scripts=[],
 
     provides=[],
     install_requires=[
-        'distribute',
         'cliff',
         'cliff-tablib',
         'requests',
