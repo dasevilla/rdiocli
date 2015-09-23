@@ -51,10 +51,12 @@ class RdioCall(Command):
             data=payload, headers=headers)
 
         if r.status_code != 200:
+            print json.dumps(r.json(), sort_keys=True, indent=2)
             raise OAuth2Exception('Invalid HTTP response code: %s' %
                 r.status_code)
 
         if r.json()['status'] == 'error':
+            print json.dumps(r.json(), sort_keys=True, indent=2)
             raise OAuth2Exception('Rdio API error: %s' % r.json()['message'])
 
         self.log_request(r)
