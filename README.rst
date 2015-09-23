@@ -14,40 +14,11 @@
 
   Commands:
     help           print detailed help for another command
-    oauth1 auth    Request OAuth 1.0a access credentials
-    oauth1 call    Make an OAuth 1.0a API call
     oauth2 auth client  OAuth 2.0 Client Credentials grant
     oauth2 auth code  OAuth 2.0 Authorization Code grant
     oauth2 auth implicit  OAuth 2.0 Implicit grant
     oauth2 auth user  OAuth 2.0 Resource Owner Credential grant
     oauth2 call    Make an OAuth 2.0 API call
-
-
-OAuth 1.0a
-==========
-
-Bellow are examples for the OAuth 1.0a 3-legged authentication method:
-
-::
-
-    $ rdio oauth1 auth -k <client key> -s <client secret>
-
-Bellow is an example of using the Rdio ``get`` API method:
-
-::
-
-    $ rdio oauth1 call -k <client key> -s <client secret> -e <access secret> \
-        -c <access secret> get 'keys=r139688'
-
-To skip entering API keys, you can define the following environment variables:
-
-::
-
-  RDIO_OAUTH1_CLIENT_KEY
-  RDIO_OAUTH1_CLIENT_SECRET
-  RDIO_OAUTH1_ACCESS_TOKEN
-  RDIO_OAUTH1_ACCESS_SECRET
-
 
 
 OAuth 2.0

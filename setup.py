@@ -55,8 +55,6 @@ setup(
             'rdio = rdiocli.main:main'
             ],
         'rdio.cli': [
-            'oauth1_auth = rdiocli.oauth1.auth:OAuth1AuthCommand',
-            'oauth1_call = rdiocli.oauth1.call:OAuth1Call',
             'oauth2_auth_code = rdiocli.oauth2.auth:AuthCodeGrant',
             'oauth2_auth_implicit = rdiocli.oauth2.auth:ImplicitGrant',
             'oauth2_auth_client = rdiocli.oauth2.auth:ClientGrant',
