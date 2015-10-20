@@ -49,7 +49,7 @@ To skip entering API keys, you can define the following environment variables:
 
 ::
 
-  RDIO_OAUTH2_CLIENT_KEY
+  RDIO_OAUTH2_CLIENT_ID
   RDIO_OAUTH2_CLIENT_SECRET
   RDIO_OAUTH2_ACCESS_TOKEN
 
